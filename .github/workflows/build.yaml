@@ -3,10 +3,10 @@ name: Build and deploy Spfx
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
