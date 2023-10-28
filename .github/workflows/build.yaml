@@ -75,13 +75,13 @@ jobs:
         run: npm i -g @pnp/cli-microsoft365
 
       - name: Connect to app Catalog site
-        run: o365 login https://tgshl.sharepoint.com/sites/Dev/ --authType password --userName "Azureuser" --password ":Z6A:SJy89ET:vy"
+        run: m365 login https://tgshl.sharepoint.com/sites/Dev/ --authType password --userName "Azureuser" --password ":Z6A:SJy89ET:vy"
 
       - name: Add spfx package in catalog
-        run: o365 spo app add -p my-first-webpart.sppkg --overwrite
+        run: m365 spo app add -p my-first-webpart.sppkg --overwrite
 
       - name: Deploy the Spfx package
-        run: o365 spo app deploy --name my-first-webpart.sppkg
+        run: m365 spo app deploy --name my-first-webpart.sppkg
 
       - name: install spfx package in dev site
-        run: o365 spo app install
+        run: m365 spo app install
