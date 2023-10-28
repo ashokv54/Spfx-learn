@@ -20,16 +20,31 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: '18.18'
-      
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - name: cache task
+        uses: actions/cache@v3
+        id: npm-cache 
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: npm install
         run: npm install
 
       - name : gulp build
         run: gulp build --ship
+
       - name : gulp bundle
         run: gulp bundle --ship
-      - name : gulp bundle
+
+      - name : gulp package
         run: gulp package-solution --ship
     
       - name: github context output
