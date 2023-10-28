@@ -1,18 +1,21 @@
-name: Spfx Build Pipeline
+name: Build and deploy Spfx
 
 on:
-  push:
-    branches:
-      - master
-      - develop
-  pr:
-    branches:
-      - develop
-  workflow_dispatch:
+    workflow_dispatch:
 
-  jobs:
-    Build:
-      runs-on: ubuntu-latest
-      steps:
-        - name: echo hello
-          run: echo hello spfx 
+jobs:
+    build: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: hello world
+              run: echo hello
+            - name: github context output
+              run: echo "${{ toJson(github)}}"
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: hello 2
+              run: |
+                echo hellow 
+                echo hellowww
