@@ -27,6 +27,10 @@ jobs:
 
       - name : gulp build
         run: gulp build --ship
+      - name : gulp bundle
+        run: gulp bundle --ship
+      - name : gulp bundle
+        run: gulp package-solution --ship
     
       - name: github context output
         run: echo "${{ toJson(github)}}"
