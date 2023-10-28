@@ -1,21 +1,27 @@
 name: Build and deploy Spfx
 
 on:
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-    build: 
-        runs-on: ubuntu-latest
-        steps:
-            - name: hello world
-              run: echo hello
-            - name: github context output
-              run: echo "${{ toJson(github)}}"
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - name: hello 2
-              run: |
-                echo hellow 
-                echo hellowww
+  build: 
+    runs-on: ubuntu-latest
+      steps:
+        - name: hello world
+          run: echo hello
+        - name: github context output
+          run: echo "${{ toJson(github)}}"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        - name: hello 2
+          run: |
+            echo hellow 
+            echo hellowww
