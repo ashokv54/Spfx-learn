@@ -75,7 +75,7 @@ jobs:
         run: npm i -g @pnp/cli-microsoft365
 
       - name: Connect to app Catalog site
-        run: m365 login https://tgshl.sharepoint.com/sites/Dev/ --authType password --userName "Azureuser" --password ":Z6A:SJy89ET:vy"
+        run: m365 login "https://tgshl.sharepoint.com/sites/Dev" --authType password --userName "Azureuser" --password ":Z6A:SJy89ET:vy"
 
       - name: Add spfx package in catalog
         run: m365 spo app add -p my-first-webpart.sppkg --overwrite
