@@ -24,6 +24,9 @@ jobs:
 
       - name: npm install
         run: npm install
+
+      - name : gulp build
+        run: gulp build --ship
     
       - name: github context output
         run: echo "${{ toJson(github)}}"
