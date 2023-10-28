@@ -1,0 +1,16 @@
+name: m365 test
+on: workflow_dispatch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "Hello World!"
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.0
+        with:
+          node-version: '18.18'
+      - name: npm install custom
+        run: npm i -g @pnp/cli-microsoft365
+      - name: Connect to app Catalog site
+        run: m365 login "https://tgshl.sharepoint.com/sites/Dev" --authType password --userName "Azureuser" --password ":Z6A:SJy89ET:vy"
