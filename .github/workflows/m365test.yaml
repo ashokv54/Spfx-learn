@@ -11,5 +11,9 @@ jobs:
           node-version: '18.18'
       - name: npm install custom
         run: npm i -g @pnp/cli-microsoft365
-      - name: Connect to app Catalog site
-        run: m365 login  -t password -u "Azureuser@tgshl.onmicrosoft.com" -p ":Z6A:SJy89ET:vy"
+      - name: M365 login
+        id: login
+        uses: pnp/action-cli-login@v2.2.1
+        with:
+          ADMIN_USERNAME:  "AdeleV@tgshl.onmicrosoft.com"
+          ADMIN_PASSWORD:  ":Z6A:SJy89ET:vy"
