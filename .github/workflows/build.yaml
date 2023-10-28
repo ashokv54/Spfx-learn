@@ -13,14 +13,15 @@ jobs:
   build: 
     runs-on: ubuntu-latest
     steps:
-      - name: hello world
-        run: echo hello
+      - name: checkout files
+        uses: actions/checkout@v4.1.1
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.0
         with:
           node-version: '18.18'
-          
+      
+
       - name: npm install
         run: npm install
     
