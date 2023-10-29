@@ -20,20 +20,21 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: '18.18'
+          cache: 'npm'
 
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        shell: bash
-        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+      # - name: Get npm cache directory
+      #   id: npm-cache-dir
+      #   shell: bash
+      #   run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - name: cache task
-        uses: actions/cache@v3
-        id: npm-cache 
-        with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # - name: cache task
+      #   uses: actions/cache@v3
+      #   id: npm-cache 
+      #   with:
+      #     path: ${{ steps.npm-cache-dir.outputs.dir }}
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
       - name: npm install
         run: npm install
@@ -89,4 +90,4 @@ jobs:
         run: m365 spo app deploy --name my-first-webpart.sppkg
 
       - name: install spfx package in dev site
-        run: m365 spo app install
+        run: m365 spo app install --siteUrl "https://tgshl.sharepoint.com/sites/Dev"
