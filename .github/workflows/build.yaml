@@ -38,9 +38,9 @@ jobs:
       - name : gulp package
         run: gulp package-solution --ship
     
-      - name: github context output
-        run: echo "${{ toJson(github)}}"
-        if: ${{ matrix.os }} == "ubuntu-latest"
+      # - name: github context output
+      #   run: echo "${{ toJson(github)}}"
+      #   if: ${{ matrix.os }} == "ubuntu-latest"
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.3
