@@ -80,13 +80,13 @@ jobs:
       - name: Get the id of the app deployed
         run: echo "The id of the app deployed is ${{ steps.M365clideploy.outputs.APP_ID }}"
 
-      - name: Deploy app to a site collection app catalog
-        id: M365clideployapp
-        uses: pnp/action-cli-deploy@v3.0.1
-        with:
-          APP_FILE_PATH: my-first-webpart.sppkg
-          SCOPE: sitecollection
-          SITE_COLLECTION_URL: https://tgshl.sharepoint.com/sites/Dev
+      # - name: Deploy app to a site collection app catalog
+      #   id: M365clideployapp
+      #   uses: pnp/action-cli-deploy@v3.0.1
+      #   with:
+      #     APP_FILE_PATH: my-first-webpart.sppkg
+      #     SCOPE: sitecollection
+      #     SITE_COLLECTION_URL: https://tgshl.sharepoint.com/sites/Dev
 
       # - name: Add spfx package in catalog
       #   run: m365 spo app add -p my-first-webpart.sppkg --overwrite
