@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout files
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4.0.0
+        uses: actions/setup-node
         with:
           node-version: '18.18'
           cache: 'npm'
@@ -38,7 +38,7 @@ jobs:
         run: echo "${{ toJson(github)}}"
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact
         with:
           name: my-artifact
           path: sharepoint/solution/
@@ -50,12 +50,12 @@ jobs:
     environment: Dev
     steps:
       - name: Get build artifacts
-        uses: actions/download-artifact@v3.0.2
+        uses: actions/download-artifact
         with:
           name: my-artifact
   
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4.0.0
+        uses: actions/setup-node
         with:
           node-version: '18.18'
 
@@ -64,14 +64,14 @@ jobs:
 
       - name: M365 login
         id: login
-        uses: pnp/action-cli-login@v2.2.1
+        uses: pnp/action-cli-login
         with:
           ADMIN_USERNAME:  ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD:  ${{ secrets.ADMIN_PASSWORD }}
           
       - name: Deploy app to tenant app catalog
         id: M365clideploy
-        uses: pnp/action-cli-deploy@v3.0.1
+        uses: pnp/action-cli-deploy
         with:
           APP_FILE_PATH: my-first-webpart.sppkg
           SKIP_FEATURE_DEPLOYMENT: true
