@@ -60,6 +60,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment: Dev
     steps:
       - name: Get build artifacts
         uses: actions/download-artifact@v3.0.2
@@ -74,8 +75,12 @@ jobs:
       - name: npm install custom
         run: npm i -g @pnp/cli-microsoft365
 
-      - name: Connect to app Catalog site
-        run: m365 login "https://tgshl.sharepoint.com/sites/Dev" --authType password --userName "Azureuser" --password ":Z6A:SJy89ET:vy"
+      - name: M365 login
+        id: login
+        uses: pnp/action-cli-login@v2.2.1
+        with:
+          ADMIN_USERNAME:  ${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD:  ${{ secrets.ADMIN_PASSWORD }}
 
       - name: Add spfx package in catalog
         run: m365 spo app add -p my-first-webpart.sppkg --overwrite
