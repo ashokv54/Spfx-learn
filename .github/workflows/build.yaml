@@ -40,6 +40,7 @@ jobs:
     
       - name: github context output
         run: echo "${{ toJson(github)}}"
+        if: ${{ matrix.os }} == "ubuntu-latest"
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.3
@@ -83,6 +84,7 @@ jobs:
 
       - name: Get the id of the app deployed
         run: echo "The id of the app deployed is ${{ steps.M365clideploy.outputs.APP_ID }}"
+        
 
 
       
