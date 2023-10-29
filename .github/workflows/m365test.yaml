@@ -3,17 +3,20 @@ on: workflow_dispatch
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Dev
     steps:
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.0
         with:
           node-version: '18.18'
+          
       - name: npm install custom
         run: npm i -g @pnp/cli-microsoft365
+
       - name: M365 login
         id: login
         uses: pnp/action-cli-login@v2.2.1
         with:
-          ADMIN_USERNAME:  "AdeleV@tgshl.onmicrosoft.com"
-          ADMIN_PASSWORD:  ":Z6A:SJy89ET:vy"
+          ADMIN_USERNAME:  ${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD:  ${{ secrets.ADMIN_PASSWORD }}
