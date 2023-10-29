@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout files
-        uses: actions/checkout
+        uses: actions/checkout@v4.1.1
 
       - name: Setup Node.js environment
-        uses: actions/setup-node
+        uses: actions/setup-node@v4.0.0
         with:
           node-version: '18.18'
           cache: 'npm'
@@ -38,7 +38,7 @@ jobs:
         run: echo "${{ toJson(github)}}"
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: my-artifact
           path: sharepoint/solution/
@@ -50,12 +50,12 @@ jobs:
     environment: Dev
     steps:
       - name: Get build artifacts
-        uses: actions/download-artifact
+        uses: actions/download-artifact@v3.0.2
         with:
           name: my-artifact
   
       - name: Setup Node.js environment
-        uses: actions/setup-node
+        uses: actions/setup-node@v4.0.0
         with:
           node-version: '18.18'
 
@@ -64,14 +64,14 @@ jobs:
 
       - name: M365 login
         id: login
-        uses: pnp/action-cli-login
+        uses: pnp/action-cli-login@v2.2.1
         with:
           ADMIN_USERNAME:  ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD:  ${{ secrets.ADMIN_PASSWORD }}
           
       - name: Deploy app to tenant app catalog
         id: M365clideploy
-        uses: pnp/action-cli-deploy
+        uses: pnp/action-cli-deploy@v4.0.0
         with:
           APP_FILE_PATH: my-first-webpart.sppkg
           SKIP_FEATURE_DEPLOYMENT: true
@@ -80,21 +80,5 @@ jobs:
       - name: Get the id of the app deployed
         run: echo "The id of the app deployed is ${{ steps.M365clideploy.outputs.APP_ID }}"
 
-      # - name: Deploy app to a site collection app catalog
-      #   id: M365clideployapp
-      #   uses: pnp/action-cli-deploy@v3.0.1
-      #   with:
-      #     APP_FILE_PATH: my-first-webpart.sppkg
-      #     SCOPE: sitecollection
-      #     SITE_COLLECTION_URL: https://tgshl.sharepoint.com/sites/Dev
-
-      # - name: Add spfx package in catalog
-      #   run: m365 spo app add -p my-first-webpart.sppkg --overwrite
-
-      # - name: Deploy the Spfx package
-      #   run: m365 spo app deploy --name my-first-webpart.sppkg
-
-      # - name: install spfx package in dev site
-      #   run: m365 spo app install --id "b4194485-6773-42bd-8bd6-fbfc5bc21e9b" --siteUrl "https://tgshl.sharepoint.com/sites/Dev"
 
       
