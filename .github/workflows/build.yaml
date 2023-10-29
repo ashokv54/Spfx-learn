@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: my-artifact
-          path: sharepoint/solution/
+          path: sharepoint/solution/my-first-webpart.sppkg
           
         
   deploy:
