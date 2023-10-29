@@ -22,20 +22,6 @@ jobs:
           node-version: '18.18'
           cache: 'npm'
 
-      # - name: Get npm cache directory
-      #   id: npm-cache-dir
-      #   shell: bash
-      #   run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-
-      # - name: cache task
-      #   uses: actions/cache@v3
-      #   id: npm-cache 
-      #   with:
-      #     path: ${{ steps.npm-cache-dir.outputs.dir }}
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
-
       - name: npm install
         run: npm install
 
