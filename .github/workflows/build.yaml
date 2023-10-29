@@ -90,4 +90,4 @@ jobs:
         run: m365 spo app deploy --name my-first-webpart.sppkg
 
       - name: install spfx package in dev site
-        run: m365 spo app install --siteUrl "https://tgshl.sharepoint.com/sites/Dev"
+        run: m365 spo app install --id "e3751732-893e-4bad-b35e-9b20e6fbe299" --siteUrl "https://tgshl.sharepoint.com/sites/Dev"
